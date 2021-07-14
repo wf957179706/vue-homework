@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+<!--  <div id="app">-->
+<!--    <p style="font-size: 25px ">计数器：{{counter}}</p>-->
+<!--    <button @click = "counter++" style="font-size: 25px;">点击</button>-->
+<!--  </div>-->
+  <div id = "computed_props">
+    千米 ： <input type="text" v-model = "kilometers">
+    米 ： <input type="text" v-model = "meters">
+  </div>
+  <p id="info"></p>
+
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#computed_props',
+      data:{
+        counter: 1,
+        kilometers : 0,
+        meters: 0
+      },
+      methods:{
+
+      },
+      computed: {
+
+      },
+      watch : {
+        kilometers: function (val){
+          this.kilometers = val;
+          this.meters = this.kilometers * 1000;
+        },
+        meters: function (val){
+          this.meters = val;
+          this.kilometers = this.meters /1000;
+        }
+      }
+    });
+
+
+    // vm.$watch('counter', function (nval, oval){
+    //   alert('计数器值的变化 :' + oval + '变为' + nval + '!');
+    // });
+    vm.$watch('kilometers',function (newValue,oldValue){
+      document.getElementById("info").innerHTML="修改前值为" + oldValue + "修改后的值为：" + newValue;
+    })
+  </script>
+<script type="text/javascript"></script>
+
+</body>
+</html>

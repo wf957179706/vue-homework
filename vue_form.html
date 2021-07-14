@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+    <div id="form">
+        <input v-model = "name" id="name" placeholder="小明">
+        <br>
+        <input type="radio" id="man"  value="男" v-model="gender" >
+        <label for="man">男</label>
+        <input type="radio" id="woman" value="女" v-model="gender">
+        <label for="woman">女</label>
+        <br>
+        <select v-model="selected" name="idol">
+            <option value="">选择一个idol</option>
+            <option value="易烊千玺">易烊千玺</option>
+            <option value="张艺兴">张艺兴</option>
+        </select>
+        <br><br>
+        <textarea v-model="messages1" placeholder="信息备注"></textarea>
+        <br>
+        <input type="submit" v-on:click="submit"/>
+        <br>
+        <br>
+        <span>姓名: {{name}}</span>
+        <br>
+        <span>性别: {{gender}}</span>
+        <br>
+        <span>偶像: {{selected}}</span>
+        <br>
+        <span>备注: {{messages1}}</span>
+    </div>
+<script type="text/javascript">
+    new Vue({
+        el: '#form',
+        data:{
+            name: "username",
+            gender: null,
+            selected: null,
+            messages1:"备注"
+        },
+        methods:{
+            //提交表单
+            submit:function(){
+                var person = new Object();
+                person.name = this.name;
+                person.messages1 = this.messages1;
+                person.selected = this.selected;
+                person.gender = this.gender;
+                alert("formdata: " + JSON.stringify(person))
+            }
+
+        }
+    })
+</script>
+
+</body>
+</html>
