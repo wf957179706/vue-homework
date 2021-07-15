@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app" >
+    <span>{{nowWeek}}</span>
+    <span>{{nowDate}}</span>
+    <span>{{nowTime}}</span>
+  <h3>{{message | filterA |filterB |filterC}}</h3>
+
+</div>
+
+<script>
+
+  new Vue({
+    el: '#app',
+    data: {
+        nowDate: '',
+        nowTime: '',
+        message: '今天是'
+
+    },
+      methods:{
+
+      },
+      filters:{
+          filterA: function (value){
+              var myDate = new Date()
+              return   value + myDate.getFullYear() + '年';
+          },
+          filterB: function (value){
+              let myDate = new Date()
+              return  value + (myDate.getMonth()+1) + '月';
+          },
+          filterC: function (value){
+              let myDate = new Date()
+              return  value + (myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate()) + '日';
+          },
+
+      }
+
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增查改删</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<style>
+    #app{
+      margin-top: 30px;
+    }
+    th{
+        text-align: center;
+    }
+</style>
+<body>
+<div id="app">
+    <div class="container">
+        <table class="table table-bordered  text-center">
+            <thead>
+            <tr >
+                <th >工号</th>
+                <th>姓名</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template v-for="row in person">
+                <tr>
+                    <td>{{row.numb}}</td>
+                    <td>{{row.name}}</td>
+                    <td><button class="btn btn-primary" @click="getdata()">查看</button>
+                        <button class="btn btn-primary" @click="putdata()">修改</button>
+                        <button class="btn btn-danger" @click="deldata()">删除</button></td>
+
+                </tr>
+            </template>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var vue=new Vue({
+        el:'#app',
+        data:{
+            person:[
+                {numb: 33001, name: '小明'},
+                {numb: 33002, name: '大黄'},
+                {numb: 33003, name: '大熊'}
+            ]
+        },
+        methods:{
+            deldata:function(index){
+                //console.info(this.people)  //为数组
+                this.person.splice(index,1);
+            }
+        }
+    })
+</script>
+<!--model的body的部分---------查看------->
+
+</body>
+</html>

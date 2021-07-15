@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input v-model="parentMsg">
+      <br>
+      <child v-bind:message="parentMsg"></child>
+    </div>
+    <div>
+      <ol>
+        <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+      </ol>
+    </div>
+    <div>
+    <p>{{total}}</p>
+    <example1 v-on:incretment="incrementTotal" value="点击"></example1>
+  </div>
+  </div>
+
+  <script>
+    // 注册
+    Vue.component('child', {
+      props: ['message'],
+      template: '<span>{{ message }}</span>'
+    })
+    Vue.component('todo-item', {
+      props: ['todo'],
+      template: '<li>{{ todo.text }}</li>'
+    })
+    Vue.component('example1', {
+      props: ['value'],
+      template: '<button v-on:click="incrementHanlder">{{value}}</button>',
+
+      methods: {
+        incrementHanlder: function () {
+          // this.count += 1
+          this.$emit('incretment')
+        }
+      }
+    })
+
+    // 创建根实例
+    new Vue({
+      el: '#app',
+      data: {
+        parentMsg: '父组件内容',
+        sites: [
+          { text: 'Runoob' },
+          { text: 'Google' },
+          { text: 'Taobao' }
+        ],
+        total: 0
+      },
+      methods:{
+        incrementTotal: function () {
+          this.total += 1
+        }
+      }
+    })
+  </script>
+
+</body>
+</html>
